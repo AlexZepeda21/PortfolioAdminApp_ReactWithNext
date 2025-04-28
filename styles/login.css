@@ -1,0 +1,34 @@
+.container-main {
+    padding: 2rem 1rem;
+}
+
+.sectionLogin {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Máximo ancho */
+}
+
+.btn-login {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #4A69BD;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    transform: scale(1.05);
+    background-color: #2e59d9;
+}
+
+@media (max-width: 480px) {
+    .sectionLogin {
+        padding: 2rem 1rem;
+    }
+}
