@@ -1,13 +1,14 @@
-import Navbar from "../../components/navbar/Navbar"
-export default function LayoutGeneral({children}){
-    return(
-        <html>
+import Navbar from "../../components/navbar/Navbar";
+
+export default function LayoutGeneral({ children }) {
+    return (
+        <>
             <header>
-                <Navbar/>
+                <Navbar />
             </header>
-            <body>
+            <main>
                 {children}
-            </body>
-        </html>        
-    )
+            </main>
+        </>
+    );
 }

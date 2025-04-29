@@ -1,3 +1,5 @@
+
+
 .container-main {
     padding: 2rem 1rem;
 }
@@ -10,8 +12,7 @@
     width: 100%;
     max-width: 400px; /* Máximo ancho */
 }
-
-.btn-login {
+.btn {
     width: 100%;
     border: none;
     border-radius: 5px;
