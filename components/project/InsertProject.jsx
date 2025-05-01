@@ -60,7 +60,7 @@ export default function InsertProject() {
     const InsertProject = async (e) => {
         e.preventDefault();
         try {
-            const response = axios.post(apiRoute.projects, dataProject)
+            const response = await axios.post(apiRoute.projects, dataProject)
             console.log('Enviado con éxito:', response.data);
             alert("Proyecto enviado con exito");
             setDataProject({
@@ -125,7 +125,7 @@ export default function InsertProject() {
 
                     </div>
                     <div className="col">
-                        <label className="label-form">Enlace url</label>ChangeData
+                        <label className="label-form">Enlace url</label>
                         <input type="text" name="url_site" className="form-control" value={dataProject.url_site} onChange={ChangeData} />
 
                     </div>
@@ -135,19 +135,17 @@ export default function InsertProject() {
                     </div>
                 </div>
 
-
                 <label className="label-form">Descripción</label>
                 <textarea name="description" className="form-control" value={dataProject.description} onChange={ChangeData} />
 
                 <label className="label-form">Categoria</label>
                 <select name="project_category_id" onChange={ChangeData} className="form-control">
                     {categories.map((category) => (category && (
-                        <option value={category.id_project_category}>{category.id_project_category} // {category.title}</option>
+                        <option  key={category.id_project_category} value={category.id_project_category}>{category.id_project_category} // {category.title}</option>
                     )))}
                 </select>
 
-                <label className="label-form">User id</label>
-                <input type="text" name="user_id" className="form-control" value={dataProject.user_id} onChange={ChangeData} />
+                <input type="hidden" name="user_id" value={dataProject.user_id} />
                 <br />
                 <input type="submit" className="form-control" />
             </form>
