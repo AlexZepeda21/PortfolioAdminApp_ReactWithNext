@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { apiRoute, projectsByCategory } from "../../lib/api";
+import { apiRoute } from "../../lib/api";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Github, ExternalLink, Code2 } from "lucide-react"
 import { motion } from "framer-motion"
-import "../../styles/Projects/projectFind.css"
-import InsertProject from "./InsertProject";
+import "../../styles/Projects/ListPage.css"
 
 export default function FindProject() {
   const [projects, setProjects] = useState([]);
@@ -13,11 +12,6 @@ export default function FindProject() {
 
   const [error, setError] = useState(null);
   const [login, setLogin] = useState(true);
-
-  const [isOpenModalInsert, setIsOpenModalInsert] = useState(false)
-
-  const openModalInsert = () => setIsOpenModalInsert(true);
-  const closeModalInsert = () => setIsOpenModalInsert(false);
 
   useEffect(() => {
     axios.get(apiRoute.projects)
@@ -28,12 +22,12 @@ export default function FindProject() {
       .catch(() => {
         setError("Ha ocurrido un error al intentar extraer los proyectos");
         setLogin(false);
-      });
+      })
   }, []);
 
   if (login) return <h1>Cargando</h1>
   if (error) return <h1>{error}: Ha ocurrido un problema</h1>;
-  if (projects.length === 0) return <h1>No hay proyectos para esta categoría</h1>;
+  if (projects.length === 0) return <h1>No hay proyectos, agreguelos.</h1>;
 
   return (
     <div className="projects-container">
@@ -44,7 +38,6 @@ export default function FindProject() {
             A collection of my recent work showcasing my skills in web development, design, and problem-solving.
           </p>
           <br />
-          <button onClick={openModalInsert} className="btn_style">Agregar proyecto</button>
         </div>
 
         <div className="projects-grid">
@@ -62,8 +55,12 @@ export default function FindProject() {
               >
                 <div className="project-image-container">
                   <img
-                    src={project.image_base64 || "/placeholder.svg"}
-                    alt={project.title_project}
+                    src={
+                      project.image_base64
+                        ? `data:${project.image_mime};base64,${project.image_base64}`
+                        : "/placeholder.svg"
+                    }
+                    alt={project.title}
                     className="project-image"
                     style={{
                       transform: hoveredProject === project.id_project ? "scale(1.05)" : "scale(1)",
@@ -101,16 +98,7 @@ export default function FindProject() {
             )))}
         </div>
       </div>
-      <div>
-        {isOpenModalInsert && (
-          <div className="modal-overlay modal_insert">
-            <div className="modal-content">
-              <button onClick={closeModalInsert} className="btn_style">Cerrar</button>
-              <InsertProject/>
-            </div>
-          </div>
-        )}
-      </div>
+
     </div>
 
   );

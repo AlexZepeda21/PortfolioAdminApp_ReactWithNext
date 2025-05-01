@@ -29,9 +29,10 @@ export default function Login() {
         e.preventDefault();
         try {
             const response = await axios.post(apiRoute.login, loginData);
-            Cookies.set("token", response.data.token, { expires: 1 }); // 1 día
+            Cookies.set("token", response.data.token, { expires: 1 });
+            Cookies.set("user_id", response.data.user.id, { expires: 1 });
             alert("Bienvenido");
-            router.push("/src"); // redirige
+            router.push("/src");
         } catch (error) {
             console.error("Ha ocurrido un error", error);
             alert("No se ha podido iniciar sesión");

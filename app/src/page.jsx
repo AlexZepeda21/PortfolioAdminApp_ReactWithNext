@@ -16,7 +16,6 @@ export default function Index() {
                 }
             });
             console.log("Logout exitoso");
-
             Cookies.remove("token");
 
             alert("Sesión cerrada correctamente");
