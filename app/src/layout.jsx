@@ -1,5 +1,4 @@
 import Navbar from "../../components/navbar/Navbar";
-
 export default function LayoutGeneral({ children }) {
     return (
         <>

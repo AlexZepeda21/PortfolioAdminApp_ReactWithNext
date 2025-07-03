@@ -1,8 +1,10 @@
 "use client"
 import { useEffect, useState } from "react";
-import "../../../styles/ProjectCategories/categories.css";
 import FindPCategories from "../../../components/projectCategories/FindPCategories"
-import InsertPCategories from "../../../components/projectCategories/InsertPCategories";
+import InsertPCategories from "../../../components/projectCategories/InsertPCategory";
+import { motion } from "framer-motion"
+import "../../../styles/general.css"
+import "../../../styles/button.css"
 
 export default function category_project() {
     const [isModalCategories, setIsModalCategories] = useState(false);
@@ -14,16 +16,17 @@ export default function category_project() {
     return (
         <div>
             <div>
-                <h1 className="titulo_ProjectCategories">CATEGORIAS DE PROYECTO</h1>
-                <button onClick={OpenModalInsert}>Agregar Categoria</button>
+                <div className="general">
+                    <button onClick={OpenModalInsert} className="button_style"><h3 className="tittle_button">Agregar Categoria</h3></button>
+                    <FindPCategories />
+                </div>
             </div>
-            <FindPCategories />
             <div>
                 {isModalCategories
                     && (
                         <div className="modal-overlay modal_insert">
                             <div className="modal-content">
-                                <button onClick={CloseModalInsert} className="btn_style">Cerrar</button>
+                                <button onClick={CloseModalInsert} className="button_style tittle_button"><h3>Cerrar</h3></button>
                                 <InsertPCategories />
                             </div>
                         </div>

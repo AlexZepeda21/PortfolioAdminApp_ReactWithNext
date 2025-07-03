@@ -1,0 +1,31 @@
+/* Base styles */
+:root {
+    --color-purple: #a78bfa;
+    --color-pink: #4f6bda;
+    --border-radius: 12px;
+    --transition-standard: all 0.3s ease;
+}
+
+.button_style {
+    margin-top: 10px;
+    border: 1px solid;
+    border-color: var(--color-purple);
+    font-size: 20px;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    background: linear-gradient(to right, var(--color-purple), var(--color-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.button_style:hover {
+    background: linear-gradient(to right, var(--color-pink), var(--color-pink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}

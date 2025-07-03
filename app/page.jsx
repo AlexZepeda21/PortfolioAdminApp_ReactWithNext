@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import "../styles/login.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
@@ -7,6 +6,7 @@ import { apiRoute } from "../lib/api";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import "../styles/button.css";
 
 export default function Login() {
     const [loginData, setLoginData] = useState({
@@ -50,7 +50,7 @@ export default function Login() {
                 <label htmlFor="password" className="form-label mt-3">Ingrese su contraseña</label>
                 <input type="password" name="password" value={loginData.password} onChange={ChangeDataLogin} id="password" className="form-control" placeholder="********" />
 
-                <button type="submit" className="btn btn-primary mt-3">
+                <button type="submit" className="button_style">
                     Enviar
                 </button>
             </form>

@@ -1,9 +1,11 @@
 "use client"
 import { useEffect, useState } from "react";
-import "../../styles/Projects/InsertPage.css"
+import "../../styles/Projects/InsertPage.css";
 import { apiRoute } from "../../lib/api";
 import axios from "axios";
 import Cookies from "js-cookie";
+
+import "../../styles/button.css";
 
 export default function InsertProject() {
     const userId = Cookies.get("user_id");
@@ -147,7 +149,7 @@ export default function InsertProject() {
 
                 <input type="hidden" name="user_id" value={dataProject.user_id} />
                 <br />
-                <input type="submit" className="form-control" />
+                <button type="submit" className="button_style"><h3 className="tittle_button">Crear proyecto</h3></button>
             </form>
         </div>
     );

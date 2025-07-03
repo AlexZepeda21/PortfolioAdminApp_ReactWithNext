@@ -3,6 +3,9 @@ import Cookies from "js-cookie";
 import { apiRoute } from "../../lib/api";
 import axios from "axios"; // ¡No olvides importar axios!
 
+import "../../styles/general.css"
+import "../../styles/button.css"
+
 export default function Index() {
 
     const closeSession = async () => {
@@ -28,9 +31,9 @@ export default function Index() {
     };
 
     return (
-        <div>
+        <div className="general">
             <h1>Bienvenido mi estimao</h1>
-            <button onClick={closeSession}>Salir</button>
+            <button onClick={closeSession} className="button_style">Salir</button>
         </div>
     );
 }

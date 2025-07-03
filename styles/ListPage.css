@@ -6,19 +6,15 @@
   --color-text: #ffffff;
   --color-text-secondary: #a0a0b0;
   --color-purple: #a78bfa;
-  --color-pink: #db2777;
+  --color-pink: #4f6bda;
   --border-radius: 12px;
   --transition-standard: all 0.3s ease;
 }
 
 .modal_insert {
   overflow-y: auto;
+}
 
-}
-.btn_style {
-  background-color: #a31373c1;
-  border-radius: 15px;
-}
 /* modal.css */
 .modal-overlay {
   position: fixed;
@@ -40,7 +36,6 @@
   max-width: 500px;
   width: 100%;
 }
-
 
 .btn {
   background-color: rgba(0, 0, 255, 0.622);

@@ -1,10 +1,11 @@
 "use client"
 import { useState, useEffect } from "react";
 import { apiRoute } from "../../lib/api";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../styles/Projects/ListPage.css"
+import "../../styles/ListPage.css";
+import "../../styles/button.css";
 
 export default function FindPCategories() {
 
@@ -72,7 +73,7 @@ export default function FindPCategories() {
                                 <div className="project-image-overlay"></div>
                                 <div className="project-title-container">
                                     <h3 className="project-title">{category.title}</h3>
-                                    <div className="project-content">
+                                    <div className="project-content-overlay">
                                         <p className="project-description">{category.description}</p>
                                         <p className="project-description">{category.summary}</p>
                                     </div>

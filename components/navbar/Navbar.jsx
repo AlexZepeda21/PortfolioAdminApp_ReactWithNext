@@ -1,5 +1,6 @@
 import Link from "next/link";
-import "../../styles/Navbar/navbar.css"
+import "../../styles/Navbar/navbar.css";
+import "../../styles/button.css";
 
 export default function Navbar() {
     return (
@@ -16,8 +17,8 @@ export default function Navbar() {
                 Categorias de proyecto
             </Link>
 
-            <Link href="/src/category_project" className="link">
-                Categorias de proyecto
+            <Link href="/src/technology" className="link">
+                Teconologías
             </Link>
         </nav>
     );

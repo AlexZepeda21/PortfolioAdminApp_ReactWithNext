@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { apiRoute } from "../../lib/api";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Github, ExternalLink, Code2 } from "lucide-react"
-import { motion } from "framer-motion"
-import "../../styles/Projects/ListPage.css"
+import { Github, ExternalLink, Code2 } from "lucide-react";
+import { motion } from "framer-motion";
+import "../../styles/ListPage.css";
+import "../../styles/button.css";
+
 
 export default function FindProject() {
   const [projects, setProjects] = useState([]);
@@ -72,7 +74,7 @@ export default function FindProject() {
                   </div>
                 </div>
 
-                <div className="project-content">
+                <div className="project-content-overlay">
                   <p>{project.type_project}</p>
                   <p className="project-description">{project.description}</p>
 
