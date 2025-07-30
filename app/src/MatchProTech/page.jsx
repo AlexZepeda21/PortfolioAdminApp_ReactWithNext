@@ -11,7 +11,7 @@ import MatchWithTech from "../../../components/matchProTech/MatchWithTech";
 
 export default function MatchProTech() {
     const [project, setProject] = useState([]);
-    
+
     const [hoveredProject, setHoveredProject] = useState(null);
     const [modalMatch, setModalMatch] = useState(false);
 
@@ -35,7 +35,12 @@ export default function MatchProTech() {
         }
     };
 
-    
+    const getImageSrc = (base64, mime) => {
+    if (!base64 || !mime) return null;
+    return `data:${mime};base64,${base64}`;
+};
+
+
 
     useEffect(() => {
         FetchProject();
@@ -54,56 +59,67 @@ export default function MatchProTech() {
                     </div>
 
                     <div className="projects-grid">
-                        {project.map((project) => (
-                            project && (
+                        {project.map((p) => (
+                            p && (
                                 <motion.div
-                                    key={project.id_project}
+                                    key={p.id_project}
                                     className="project-card"
                                     whileHover={{ y: -8, transition: { duration: 0.3 } }}
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.5, delay: project.id_project * 0.1 }}
-                                    onMouseEnter={() => setHoveredProject(project.id_project)}
+                                    transition={{ duration: 0.5, delay: p.id_project * 0.1 }}
+                                    onMouseEnter={() => setHoveredProject(p.id_project)}
                                     onMouseLeave={() => setHoveredProject(null)}
                                 >
 
                                     <div className="project-image-container">
                                         <img
                                             src={
-                                                project.image_base64
-                                                    ? `data:${project.image_mime};base64,${project.image_base64}`
+                                                p.image_base64
+                                                    ? `data:${p.image_mime};base64,${p.image_base64}`
                                                     : "/placeholder.svg"
                                             }
-                                            alt={project.title}
+                                            alt={p.title}
                                             className="project-image"
                                             style={{
-                                                transform: hoveredProject === project.id_project ? "scale(1.05)" : "scale(1)",
+                                                transform: hoveredProject === p.id_project ? "scale(1.05)" : "scale(1)",
                                             }}
                                         />
                                         <div className="project-image-overlay"></div>
                                         <div className="project-title-container">
-                                            <h3 className="project-title">{project.title_project}</h3>
+                                            <h3 className="project-title">{p.title_project}</h3>
                                         </div>
                                     </div>
 
 
                                     <div className="project-content-overlay">
-                                        <p>{project.type_project}</p>
+                                        <p>{p.type_project}</p>
 
-                                        {/* <div className="project-technologies">
-                    {project.technologies.map((tech, index) => (
-                      <div key={index} className="technology-tag">
-                        <img src={tech.icon || "/placeholder.svg"} alt={tech.name} className="technology-icon" />
-                        <span className="technology-name">{tech.name}</span>
-                      </div>
-                    ))}
-                  </div> */}
+                                        <div className="project-technologies">
+                                            {p.technologies?.map((tech, index) => {
+                                                const imgSrc = getImageSrc(tech.image_base64, tech.image_mime);
+                                                return (
+                                                    <div key={index} className="technology-tag">
+                                                        <img
+                                                            src={imgSrc || "/placeholder.svg"}
+                                                            alt={tech.name_technology || "Tecnología"}
+                                                            className="technology-icon"
+                                                            onError={(e) => {
+                                                                console.warn(`Error cargando imagen de ${tech.name_technology}`);
+                                                                e.target.style.display = "none";
+                                                            }}
+                                                        />
+                                                        <span className="technology-name">{tech.name_technology}</span>
+                                                    </div>
+                                                );
+                                            })}
+
+                                        </div>
                                     </div>
 
                                     <div className="project-links">
-
                                         <button onClick={() => {
-                                            setData({ id_project: project.id_project });
+                                            setData({ id_project: p.id_project });
                                             OpenModalMatch();
                                         }}
                                         >
@@ -122,15 +138,15 @@ export default function MatchProTech() {
 
                     <div className="projects-container modal-overlay">
                         <div className="modal-content">
-                        <button type="button" onClick={ClosedModalMatch}>
-                            cerrar
-                        </button>
-                        
-                        <MatchWithTech id_project={data.id_project}>
+                            <button type="button" onClick={ClosedModalMatch}>
+                                cerrar
+                            </button>
 
-                        </MatchWithTech>
+                            <MatchWithTech id_project={data.id_project}>
+
+                            </MatchWithTech>
                         </div>
-                           
+
                     </div>
                 )}
             </div>

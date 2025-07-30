@@ -22,7 +22,7 @@ export default function FindProject() {
   const openModalUpdate = () => setModalUpdate(true);
   const closeModalUpdate = () => setModalUpdate(false);
 
-  useEffect(() => {
+  const GetProject = () => {
     axios.get(apiRoute.projects)
       .then(response => {
         setProjects(response.data);
@@ -32,7 +32,18 @@ export default function FindProject() {
         setError("Ha ocurrido un error al intentar extraer los proyectos");
         setLogin(false);
       })
+  }
+
+  const getImageSrc = (base64, mime) => {
+    if (!base64 || !mime) return null
+    return `data:${mime};base64,${base64}`
+  }
+
+  useEffect(() => {
+    GetProject();
   }, []);
+
+
 
   if (login) return <h1>Cargando</h1>
   if (error) return <h1>{error}: Ha ocurrido un problema</h1>;
@@ -87,14 +98,26 @@ export default function FindProject() {
                   <p>{project.type_project}</p>
                   <p className="project-description">{project.description}</p>
 
-                  {/* <div className="project-technologies">
-                    {project.technologies.map((tech, index) => (
-                      <div key={index} className="technology-tag">
-                        <img src={tech.icon || "/placeholder.svg"} alt={tech.name} className="technology-icon" />
-                        <span className="technology-name">{tech.name}</span>
-                      </div>
-                    ))}
-                  </div> */}
+                  <div className="project-technologies">
+                    {project.technologies?.map((tech, index) => {
+                      const imgSrc = getImageSrc(tech.image_base64, tech.image_mime);
+                      return (
+                        <div key={index} className="technology-tag">
+                          <img
+                            src={imgSrc || "/placeholder.svg"}
+                            alt={tech.name_technology || "Tecnología"}
+                            className="technology-icon"
+                            onError={(e) => {
+                              console.warn(`Error cargando imagen de ${tech.name_technology}`);
+                              e.target.style.display = "none";
+                            }}
+                          />
+                          <span className="technology-name">{tech.name_technology}</span>
+                        </div>
+                      );
+                    })}
+
+                  </div>
                 </div>
 
                 <div className="project-links">

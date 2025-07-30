@@ -206,3 +206,7 @@
 .project-link:hover {
   color: var(--color-text);
 }
+
+.technology-icon{
+object-fit: cover;
+}

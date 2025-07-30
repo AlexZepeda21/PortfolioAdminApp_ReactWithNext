@@ -36,11 +36,11 @@ export default function FindTechnologies() {
   // Colores por tecnología
   const getLogoColor = useMemo(() => {
     const techColors = {
-      html: "#E44D26",
+      html: "#e44c2653",
       css: "#264DE4",
       javascript: "#F7DF1E",
       typescript: "#3178C6",
-      react: "#61DAFB",
+      react: "#61dafb8e",
       vue: "#4FC08D",
       angular: "#DD0031",
       tailwind: "#38B2AC",
@@ -48,7 +48,7 @@ export default function FindTechnologies() {
       figma: "#F24E1E",
       php: "#777BB4",
       node: "#339933",
-      laravel: "#FF2D20",
+      laravel: "#ff2b2066",
       express: "#000000",
       mysql: "#4479A1",
       mongodb: "#47A248",
@@ -56,7 +56,7 @@ export default function FindTechnologies() {
       nginx: "#009639",
       apache: "#D22128",
       python: "#3776AB",
-      astro: "#FF5D01",
+      astro: "#ff5e0186",
       docker: "#2496ED",
       git: "#F05032",
       github: "#181717",
