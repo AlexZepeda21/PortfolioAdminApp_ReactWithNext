@@ -1,0 +1,38 @@
+
+/* 
+{x.map((x) => x && ( html ))}
+{x.map((x) => x && ( html ))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+{x.map((x)=> x &&(html))}
+
+onClick={() => {
+setData({ id_project: project.id_project });
+OpenModalMatch();
+}}
+*/

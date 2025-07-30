@@ -17,6 +17,7 @@ export default function Project() {
                 <button onClick={openModalInsert} className="button_style"><h3 className="tittle_button">Agregar proyecto</h3></button>
                 <FindProject />
             </div>
+
             <div>
                 {isModalInsert
                     && (

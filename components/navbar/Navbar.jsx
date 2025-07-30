@@ -20,6 +20,10 @@ export default function Navbar() {
             <Link href="/src/technology" className="link">
                 Teconologías
             </Link>
+
+            <Link href="/src/MatchProTech" className="link">
+                Unir proyectos y tecnologías
+            </Link>
         </nav>
     );
 }

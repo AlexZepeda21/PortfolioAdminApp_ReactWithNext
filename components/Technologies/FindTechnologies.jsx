@@ -22,11 +22,11 @@ export default function FindTechnologies() {
       setLoading(false)
     }
   }, [])
-  
-const getImageSrc = (base64, mime) => {
-  if (!base64 || !mime) return null
-  return `data:${mime};base64,${base64}`
-}
+
+  const getImageSrc = (base64, mime) => {
+    if (!base64 || !mime) return null
+    return `data:${mime};base64,${base64}`
+  }
 
 
   useEffect(() => {

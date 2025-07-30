@@ -1,3 +1,4 @@
+"use client"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { apiRoute } from "../../lib/api";
@@ -6,6 +7,7 @@ import { Github, ExternalLink, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
 import "../../styles/ListPage.css";
 import "../../styles/button.css";
+import UpdateProject from "./UpdateProject";
 
 
 export default function FindProject() {
@@ -14,6 +16,11 @@ export default function FindProject() {
 
   const [error, setError] = useState(null);
   const [login, setLogin] = useState(true);
+
+  const [ModalUpdate, setModalUpdate] = useState(false);
+
+  const openModalUpdate = () => setModalUpdate(true);
+  const closeModalUpdate = () => setModalUpdate(false);
 
   useEffect(() => {
     axios.get(apiRoute.projects)
@@ -55,24 +62,26 @@ export default function FindProject() {
                 onMouseEnter={() => setHoveredProject(project.id_project)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <div className="project-image-container">
-                  <img
-                    src={
-                      project.image_base64
-                        ? `data:${project.image_mime};base64,${project.image_base64}`
-                        : "/placeholder.svg"
-                    }
-                    alt={project.title}
-                    className="project-image"
-                    style={{
-                      transform: hoveredProject === project.id_project ? "scale(1.05)" : "scale(1)",
-                    }}
-                  />
-                  <div className="project-image-overlay"></div>
-                  <div className="project-title-container">
-                    <h3 className="project-title">{project.title_project}</h3>
+                <button onClick={openModalUpdate} >
+                  <div className="project-image-container">
+                    <img
+                      src={
+                        project.image_base64
+                          ? `data:${project.image_mime};base64,${project.image_base64}`
+                          : "/placeholder.svg"
+                      }
+                      alt={project.title}
+                      className="project-image"
+                      style={{
+                        transform: hoveredProject === project.id_project ? "scale(1.05)" : "scale(1)",
+                      }}
+                    />
+                    <div className="project-image-overlay"></div>
+                    <div className="project-title-container">
+                      <h3 className="project-title">{project.title_project}</h3>
+                    </div>
                   </div>
-                </div>
+                </button>
 
                 <div className="project-content-overlay">
                   <p>{project.type_project}</p>
@@ -100,9 +109,24 @@ export default function FindProject() {
             )))}
         </div>
       </div>
+      <div>
+        {ModalUpdate
+          && (
+            <div className="modal-overlay modal_insert">
+              <div className="modal-content">
+                <button onClick={closeModalUpdate} className="button_style tittle_button">Cerrar</button>
+                <div>
+                  <UpdateProject>
 
+                  </UpdateProject>
+                </div>
+              </div>
+            </div>
+          )}
+      </div>
     </div>
 
   );
+
 
 }

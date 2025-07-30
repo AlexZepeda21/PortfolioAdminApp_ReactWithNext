@@ -43,6 +43,7 @@ export default function FindPCategories() {
                     </p>
                     <br />
                 </div>
+                
                 <div className="projects-grid">
                     {categories.map((category) =>
                     (category && (

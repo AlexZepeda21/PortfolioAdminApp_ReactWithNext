@@ -15,7 +15,6 @@ export default function Technology() {
             <div>
                 <div>
                     <button onClick={OpenModalTechnology} className="button_style"><h3 className="tittle_button">Agregar Tecnología</h3></button>
-                    
                 </div>
                 <FindTechnologies />
             </div>
