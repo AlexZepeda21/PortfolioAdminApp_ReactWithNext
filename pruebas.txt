@@ -36,3 +36,7 @@ setData({ id_project: project.id_project });
 OpenModalMatch();
 }}
 */
+
+onClick={() => {
+DeleteProject({project.id_project });
+}}

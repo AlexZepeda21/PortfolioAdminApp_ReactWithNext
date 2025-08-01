@@ -15,6 +15,10 @@
   overflow-y: auto;
 }
 
+.show_id{
+  display: none;
+}
+
 /* modal.css */
 .modal-overlay {
   position: fixed;

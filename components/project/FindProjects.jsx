@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { apiRoute } from "../../lib/api";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Github, ExternalLink, Code2 } from "lucide-react";
+import { Github, ExternalLink, Code2, Delete } from "lucide-react";
 import { motion } from "framer-motion";
 import "../../styles/ListPage.css";
 import "../../styles/button.css";
@@ -14,6 +14,19 @@ export default function FindProject() {
   const [projects, setProjects] = useState([]);
   const [hoveredProject, setHoveredProject] = useState(null);
 
+  const [selectedProject, setSelectedProject] = useState({
+    id_project: '',
+    type_project: '',
+    title_project: '',
+    development_start_date: '',
+    development_end_date: '',
+    image_base64: '',
+    url_github: '',
+    url_site: '',
+    url_download: '',
+    description: ''
+  });
+
   const [error, setError] = useState(null);
   const [login, setLogin] = useState(true);
 
@@ -22,7 +35,12 @@ export default function FindProject() {
   const openModalUpdate = () => setModalUpdate(true);
   const closeModalUpdate = () => setModalUpdate(false);
 
-  const GetProject = () => {
+  const getImageSrc = (base64, mime) => {
+    if (!base64 || !mime) return null
+    return `data:${mime};base64,${base64}`
+  }
+
+  const FetchProject = () => {
     axios.get(apiRoute.projects)
       .then(response => {
         setProjects(response.data);
@@ -34,13 +52,23 @@ export default function FindProject() {
       })
   }
 
-  const getImageSrc = (base64, mime) => {
-    if (!base64 || !mime) return null
-    return `data:${mime};base64,${base64}`
+  const DeleteProject = (id) => {
+    try {
+      axios.delete(apiRoute.projects + '/' + id)
+      alert("Proyecto eliminado")
+      FetchProject()
+
+    }
+    catch {
+      console.log("No se ha eliminado nada");
+      alert("No se ha eliminado")
+    }
   }
 
+
+
   useEffect(() => {
-    GetProject();
+    FetchProject();
   }, []);
 
 
@@ -73,7 +101,23 @@ export default function FindProject() {
                 onMouseEnter={() => setHoveredProject(project.id_project)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <button onClick={openModalUpdate} >
+                <button onClick={() => {
+                  setSelectedProject({
+                    id_project: project.id_project,
+                    type_project: project.type_project,
+                    title_project: project.title_project,
+                    development_start_date: project.development_start_date,
+                    development_end_date: project.development_end_date,
+                    image_base64: project.image_base64,
+                    url_github: project.url_github,
+                    url_site: project.url_site,
+                    url_download: project.url_download,
+                    description: project.description,
+                    project_category_id: project.project_category_id,
+                    user_id: project.user_id
+                  })
+                  openModalUpdate();
+                }} >
                   <div className="project-image-container">
                     <img
                       src={
@@ -96,6 +140,7 @@ export default function FindProject() {
 
                 <div className="project-content-overlay">
                   <p>{project.type_project}</p>
+                  <p className="show_id">{project.project_category_id}</p>
                   <p className="project-description">{project.description}</p>
 
                   <div className="project-technologies">
@@ -119,13 +164,15 @@ export default function FindProject() {
 
                   </div>
                 </div>
-
                 <div className="project-links">
                   <a href={project.url_github} target="_blank" rel="noopener noreferrer" className="project-link">
                     <Github size={20} />
                   </a>
                   <button className="project-link">
                     Ver detalles <Code2 size={20} />
+                  </button>
+                  <button className="project-link" onClick={() => DeleteProject(project.id_project)}>
+                    <Delete />
                   </button>
                 </div>
               </motion.div>
@@ -139,9 +186,7 @@ export default function FindProject() {
               <div className="modal-content">
                 <button onClick={closeModalUpdate} className="button_style tittle_button">Cerrar</button>
                 <div>
-                  <UpdateProject>
-
-                  </UpdateProject>
+                  <UpdateProject selectedProject={selectedProject} />
                 </div>
               </div>
             </div>
